@@ -1,6 +1,8 @@
 import express from "express";
+import dotenv from "dotenv";
 import { login, logout, signup } from "../controllers/auth.controller.js";
 
+dotenv.config();
 const router = express.Router();
 
 router.post("/signup", signup);
