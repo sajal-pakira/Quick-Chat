@@ -25,6 +25,7 @@ export const signup = async (req, res) => {
       email,
       fullName,
       password: hashedPassword,
+      profilePic,
     });
     //jwt creation
     if (newUser) {
@@ -37,7 +38,6 @@ export const signup = async (req, res) => {
           _id: newUser._id,
           email: newUser.email,
           fullName: newUser.fullName,
-
           profilePic: newUser.profilePic,
         },
       });
