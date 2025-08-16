@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
         },
       });
     } else {
-      return res.status(400).json({
+      res.status(400).json({
         message: "User data not found!",
         success: false,
       });
