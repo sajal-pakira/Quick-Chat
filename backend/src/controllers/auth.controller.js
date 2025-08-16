@@ -1,4 +1,5 @@
-import User from "../models/user.model";
+import { generateToken } from "../lib/utils.js";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
 export const signup = async (req, res) => {
@@ -25,6 +26,22 @@ export const signup = async (req, res) => {
       fullName,
       password: hashedPassword,
     });
+    //jwt creation
+    if (newUser) {
+      generateToken(newUser._id, res);
+      await newUser.save();
+      res.status(201).json({
+        message: "New User created successfully!!",
+        success: true,
+        user: {
+          _id: newUser._id,
+          email: newUser.email,
+          fullName: newUser.fullName,
+
+          profilePic: newUser.profilePic,
+        },
+      });
+    }
   } catch (error) {}
 };
 export const login = async (req, res) => {};
