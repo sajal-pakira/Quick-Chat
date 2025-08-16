@@ -52,7 +52,7 @@ export const signup = async (req, res) => {
       message: "Failed to signup! Please try again!",
       success: false,
     });
-    console.log("Error in signup function :- ", error);
+    console.log("Error in signup function :- ", error.message);
   }
 };
 export const login = async (req, res) => {};
