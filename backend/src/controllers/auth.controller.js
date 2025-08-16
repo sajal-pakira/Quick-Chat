@@ -5,19 +5,26 @@ import bcrypt from "bcryptjs";
 export const signup = async (req, res) => {
   const { email, fullName, password, profilePic } = req.body;
   try {
-    if (password.length < 6) {
+    if (!email || !fullName || !password)
       return res.status(400).json({
-        message: "Password must be at least 6 characters",
         success: false,
+        message: "All fields are required",
       });
-    }
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
         message: "Email already exists, Please Login",
         success: false,
       });
     }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters",
+        success: false,
+      });
+    }
+
     //hashing password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -49,7 +56,7 @@ export const signup = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: "Failed to signup! Please try again!",
+      message: `${error.message}`,
       success: false,
     });
     console.log("Error in signup function :- ", error.message);
