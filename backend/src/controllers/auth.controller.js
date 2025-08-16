@@ -41,8 +41,19 @@ export const signup = async (req, res) => {
           profilePic: newUser.profilePic,
         },
       });
+    } else {
+      return res.status(400).json({
+        message: "User data not found!",
+        success: false,
+      });
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to signup! Please try again!",
+      success: false,
+    });
+    console.log("Error in signup function :- ", error);
+  }
 };
 export const login = async (req, res) => {};
 export const logout = async (req, res) => {};
