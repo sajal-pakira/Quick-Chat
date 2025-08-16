@@ -6,14 +6,14 @@ export const signup = async (req, res) => {
   const { email, fullName, password, profilePic } = req.body;
   try {
     if (password.length < 6) {
-      return req.status(400).json({
+      return res.status(400).json({
         message: "Password must be at least 6 characters",
         success: false,
       });
     }
     const user = await User.find({ email });
     if (user) {
-      return req.status(400).json({
+      return res.status(400).json({
         message: "Email already exists, Please Login",
         success: false,
       });
