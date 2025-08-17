@@ -90,6 +90,12 @@ export const login = async (req, res) => {
         profilePic: user.profilePic,
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error in Login controller :- ", error.message);
+    res.status(500).json({
+      success: false,
+      message: `${error.message}`,
+    });
+  }
 };
 export const logout = async (req, res) => {};
