@@ -62,5 +62,16 @@ export const signup = async (req, res) => {
     console.log("Error in signup function :- ", error.message);
   }
 };
-export const login = async (req, res) => {};
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User does not exist! Please signup",
+      });
+    }
+  } catch (error) {}
+};
 export const logout = async (req, res) => {};
