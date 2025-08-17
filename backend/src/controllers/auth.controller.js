@@ -72,6 +72,7 @@ export const login = async (req, res) => {
         message: "User does not exist! Please signup",
       });
     }
+    const isCorrectPassword = await bcrypt.compare(password, user.password);
   } catch (error) {}
 };
 export const logout = async (req, res) => {};
