@@ -73,12 +73,13 @@ export const login = async (req, res) => {
       });
     }
     const isCorrectPassword = await bcrypt.compare(password, user.password);
-    if(!isCorrectPassword){
+    if (!isCorrectPassword) {
       return res.status(400).json({
         success: false,
         message: "Invalid credential",
       });
     }
+    generateToken(user._id, res);
   } catch (error) {}
 };
 export const logout = async (req, res) => {};
