@@ -68,21 +68,21 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        success: false,
         message: "User does not exist! Please signup",
+        success: false,
       });
     }
     const isCorrectPassword = await bcrypt.compare(password, user.password);
     if (!isCorrectPassword) {
       return res.status(400).json({
-        success: false,
         message: "Invalid credential",
+        success: false,
       });
     }
     generateToken(user._id, res);
     res.status(200).json({
-      success: true,
       message: "Login successful",
+      success: true,
       user: {
         _id: user._id,
         email: user.email,
@@ -93,8 +93,8 @@ export const login = async (req, res) => {
   } catch (error) {
     console.log("Error in Login controller :- ", error.message);
     res.status(500).json({
-      success: false,
       message: `${error.message}`,
+      success: false,
     });
   }
 };
@@ -104,14 +104,14 @@ export const logout = async (req, res) => {
       maxAge: 0,
     });
     res.status(200).json({
-      success: false,
       message: "Logged out successfully",
+      success: false,
     });
   } catch (error) {
     console.log("Error in logout controller :- ", error.message);
     res.status(500).json({
-      success: false,
       message: `${error.message}`,
+      success: false,
     });
   }
 };
