@@ -1,3 +1,5 @@
+import cloudinary from "../lib/cloudinary.js";
+
 export const updateProfile = async (req, res) => {
   const { fullName, profilePic } = req.body;
   if (!fullName && !profilePic) {
@@ -6,5 +8,9 @@ export const updateProfile = async (req, res) => {
       success: false,
     });
   }
-  if(fullName) req.user.fullName=fullName;
+  if (fullName) req.user.fullName = fullName;
+
+  if (profilePic) {
+    const uploadResponse = cloudinary.uploader.upload(profilePic);
+  }
 };
