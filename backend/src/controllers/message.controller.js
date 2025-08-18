@@ -15,3 +15,7 @@ export const getUsersForSideBar = async (req, res) => {
     });
   }
 };
+
+export const getMessage =async (req,res) => {
+    
+}
