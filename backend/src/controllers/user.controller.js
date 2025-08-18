@@ -6,4 +6,5 @@ export const updateProfile = async (req, res) => {
       success: false,
     });
   }
+  if(fullName) req.user.fullName=fullName;
 };
