@@ -62,6 +62,7 @@ export const signup = async (req, res) => {
     console.log("Error in signup function :- ", error.message);
   }
 };
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -98,6 +99,7 @@ export const login = async (req, res) => {
     });
   }
 };
+
 export const logout = async (req, res) => {
   try {
     res.cookie("jwt", "", {
@@ -113,5 +115,13 @@ export const logout = async (req, res) => {
       message: `${error.message}`,
       success: false,
     });
+  }
+};
+
+export const checkAuth = (req, res) => {
+  try {
+    
+  } catch (error) {
+    
   }
 };
