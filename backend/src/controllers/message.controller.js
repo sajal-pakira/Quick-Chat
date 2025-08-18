@@ -5,5 +5,11 @@ export const getUsersForSideBar = async (req, res) => {
     const loggedInUserId = req.user._id;
     const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } });
     res.status(200).json(filteredUsers);
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error in getUsersForSideBar controller :- ", error.message);
+    req.status(500).json({
+      message: `${error.message}`,
+      success: false,
+    });
+  }
 };
