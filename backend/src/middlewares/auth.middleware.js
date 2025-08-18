@@ -26,5 +26,11 @@ export const protectedRoute = async (req, res, next) => {
     }
     req.user = user;
     next();
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error in protectedRoute controller :- ", error.message);
+    res.status(500).json({
+      message: `${error.message}`,
+      success: false,
+    });
+  }
 };
