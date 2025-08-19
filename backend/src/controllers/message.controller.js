@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Message from "../models/message.model.js";
 
 export const getUsersForSideBar = async (req, res) => {
   try {
@@ -16,6 +17,10 @@ export const getUsersForSideBar = async (req, res) => {
   }
 };
 
-export const getMessage =async (req,res) => {
-    
-}
+export const getMessage = async (req, res) => {
+  try {
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
+  //  await Message.findOne({})
+  } catch (error) {}
+};
