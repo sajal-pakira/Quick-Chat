@@ -38,6 +38,10 @@ export const getMessage = async (req, res) => {
   }
 };
 
-export const sendMessage=async (req,res) => {
-  
-}
+export const sendMessage = async (req, res) => {
+  try {
+    const { image, text } = req.body;
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
+  } catch (error) {}
+};
