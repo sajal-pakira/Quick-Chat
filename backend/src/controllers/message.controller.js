@@ -55,5 +55,6 @@ export const sendMessage = async (req, res) => {
       image: imageUrl,
       text,
     });
+    await newMessage.save();
   } catch (error) {}
 };
