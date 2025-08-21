@@ -56,5 +56,6 @@ export const sendMessage = async (req, res) => {
       text,
     });
     await newMessage.save();
+    res.status(201).json(newMessage);
   } catch (error) {}
 };
