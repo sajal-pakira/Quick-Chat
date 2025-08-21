@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import cloudinary from "../lib/cloudinary.js";
 
 export const getUsersForSideBar = async (req, res) => {
   try {
@@ -43,5 +44,10 @@ export const sendMessage = async (req, res) => {
     const { image, text } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
+    let imageUrl;
+    if (image) {
+      uploadResponse = await cloudinary.uploader.upload(image);
+      imageUrl = uploadResponse.secure_url;
+    }
   } catch (error) {}
 };
