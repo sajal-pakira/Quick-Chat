@@ -1,5 +1,11 @@
+import Navbar from "./components/Navbar";
+
 const App = () => {
-  return <div className="text-red-500">hello💖</div>;
+  return (
+    <div className="">
+      <Navbar />
+    </div>
+  );
 };
 
 export default App;
